@@ -1,0 +1,6 @@
+What To Do
+(1) Fix Calulator
+(2) Find way to get varibles up
+(3) try to add clock
+(4) make pretter
+(5)(add more when think of)

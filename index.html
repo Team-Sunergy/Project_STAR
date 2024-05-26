@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Telemetry Pit App</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body onload="updateTime()">
+    <div class="container;">
+      <header class="header">
+        <div class="weather">
+          Weather: (Temp)/(Wind Speed)/(Wind Direction)/(Condition)
+        </div>
+        <div class="team-logo">TEAM <span class="sunergy">SUNERGY</span></div>
+      </header>
+      <main class="main-content">
+        <section class="score-calculator">
+          <h3>Score Calculator</h3>
+          <form id="movForm">
+            <label for="officialDistance">Official Distance(mi):</label>
+            <input
+              type="number"
+              id="officialDistance"
+              name="officialDistance"
+              step="any"
+              required
+            />
+
+            <label for="highestDrivingDistance"
+              >Highest Driving Distance(mi):</label
+            >
+            <input
+              type="number"
+              id="highestDrivingDistance"
+              name="highestDrivingDistance"
+              step="any"
+              required
+            />
+
+            <label for="energyStorageCharges">Unmetered Charges:</label>
+            <input
+              type="number"
+              id="energyStorageCharges"
+              name="energyStorageCharges"
+              step="any"
+              required
+            />
+
+            <label for="energyStorageCapacity">Battery Capacity(kWh):</label>
+            <input
+              type="number"
+              id="energyStorageCapacity"
+              name="energyStorageCapacity"
+              step="any"
+              required
+            />
+
+            <label for="meteredEnergy">Metered Energy(kWh):</label>
+            <input
+              type="number"
+              id="meteredEnergy"
+              name="meteredEnergy"
+              step="any"
+              required
+            />
+
+            <label for="targetSpeed">Target Speed:</label>
+            <input
+              type="number"
+              id="targetSpeed"
+              name="targetSpeed"
+              step="any"
+              required
+            />
+
+            <label for="overallAverageSpeed">Overall Average Speed:</label>
+            <input
+              type="number"
+              id="overallAverageSpeed"
+              name="overallAverageSpeed"
+              step="any"
+              required
+            />
+
+            <label for="practicalityScore">Practicality Score (%):</label>
+            <input
+              type="number"
+              id="practicalityScore"
+              name="practicalityScore"
+              step="any"
+              required
+            />
+
+            <button type="submit">Calculate</button>
+          </form>
+          <div id="result"></div>
+          <div class="toggle">
+            <label for="switch">FSGP</label>
+            <input type="checkbox" id="toggle-switch" />
+            <label for="toggle-switch" class="asc-label">ASC</label>
+          </div>
+        </section>
+        <section class="details">
+          <div class="status">
+            <p>Speed = 00 MPH</p>
+            <p>Distance = 0.0 mi</p>
+            <p>SOC = 0.0%</p>
+            <p>Intake = 0V / 0A</p>
+            <p>Output = 0V / 0A</p>
+            <p>NET = 0V / 0A</p>
+            <p>Max Cell = 0%</p>
+            <p>Min Cell = 0%</p>
+            <p>Difference = 0%</p>
+            <p>Batt Temp = 0 F</p>
+          </div>
+          <div class="mppt">
+            <div class="mppt-section">
+              <h4>MPPT 1</h4>
+              <p>Voltage = 0.0 V</p>
+              <p>Current = 0.0 A</p>
+              <p>Temp = 0.0 F</p>
+            </div>
+            <div class="mppt-section">
+              <h4>MPPT 2</h4>
+              <p>Voltage = 0.0 V</p>
+              <p>Current = 0.0 A</p>
+              <p>Temp = 0.0 F</p>
+            </div>
+            <div class="motor-section">
+              <h4>Motor 1</h4>
+              <p>Voltage = 0.0 V</p>
+              <p>Current = 0.0 A</p>
+              <p>Temp = 0.0 F</p>
+            </div>
+            <div class="motor-section">
+              <h4>Motor 2</h4>
+              <p>Voltage = 0.0 V</p>
+              <p>Current = 0.0 A</p>
+              <p>Temp = 0.0 F</p>
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer class="footer">
+        <div class="error-message">
+          <p>Error Message:</p>
+          <p>(Fault Code): (Fault Message): (Solution)</p>
+        </div>
+      </footer>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
