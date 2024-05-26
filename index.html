@@ -9,7 +9,6 @@
     <script src="script.js"></script>
 
   </head>
-  <body onload="updateTime()">
     <div class="container;">
       <header class="header">
         <div class="weather">
@@ -21,88 +20,33 @@
         <section class="score-calculator">
           <h3>Score Calculator</h3>
           <form id="movForm">
-            <label for="officialDistance">Official Distance(mi):</label>
-            <input
-              type="number"
-              id="officialDistance"
-              name="officialDistance"
-              step="any"
-              required
-            />
-
-            <label for="highestDrivingDistance"
-              >Highest Driving Distance(mi):</label
-            >
-            <input
-              type="number"
-              id="highestDrivingDistance"
-              name="highestDrivingDistance"
-              step="any"
-              required
-            />
-
+            <label for="officialDistance">Official Distance (mi):</label>
+            <input type="number" id="officialDistance" name="officialDistance" step="any" min="0" required />
+  
+            <label for="highestDrivingDistance">Highest Driving Distance (mi):</label>
+            <input type="number" id="highestDrivingDistance" name="highestDrivingDistance" step="any" min="0" required />
+  
             <label for="energyStorageCharges">Unmetered Charges:</label>
-            <input
-              type="number"
-              id="energyStorageCharges"
-              name="energyStorageCharges"
-              step="any"
-              required
-            />
-
-            <label for="energyStorageCapacity">Battery Capacity(kWh):</label>
-            <input
-              type="number"
-              id="energyStorageCapacity"
-              name="energyStorageCapacity"
-              step="any"
-              required
-            />
-
-            <label for="meteredEnergy">Metered Energy(kWh):</label>
-            <input
-              type="number"
-              id="meteredEnergy"
-              name="meteredEnergy"
-              step="any"
-              required
-            />
-
+            <input type="number" id="energyStorageCharges" name="energyStorageCharges" step="any" min="0" required />
+  
+            <label for="energyStorageCapacity">Battery Capacity (kWh):</label>
+            <input type="number" id="energyStorageCapacity" name="energyStorageCapacity" step="any" min="0" required />
+  
+            <label for="meteredEnergy">Metered Energy (kWh):</label>
+            <input type="number" id="meteredEnergy" name="meteredEnergy" step="any" min="0" required />
+  
             <label for="targetSpeed">Target Speed:</label>
-            <input
-              type="number"
-              id="targetSpeed"
-              name="targetSpeed"
-              step="any"
-              required
-            />
-
+            <input type="number" id="targetSpeed" name="targetSpeed" step="any" min="0" required />
+  
             <label for="overallAverageSpeed">Overall Average Speed:</label>
-            <input
-              type="number"
-              id="overallAverageSpeed"
-              name="overallAverageSpeed"
-              step="any"
-              required
-            />
-
+            <input type="number" id="overallAverageSpeed" name="overallAverageSpeed" step="any" min="0" required />
+  
             <label for="practicalityScore">Practicality Score (%):</label>
-            <input
-              type="number"
-              id="practicalityScore"
-              name="practicalityScore"
-              step="any"
-              required
-            />
-
-            <button type="submit">Calculate</button>
+            <input type="number" id="practicalityScore" name="practicalityScore" step="any" min="0" required />
+  
           </form>
           <div id="result"></div>
-          <div class="toggle">
-            <label for="switch">FSGP</label>
-            <input type="checkbox" id="toggle-switch" />
-            <label for="toggle-switch" class="asc-label">ASC</label>
-          </div>
+        
         </section>
         <section class="details">
           <div class="status">
