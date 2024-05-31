@@ -18,4 +18,5 @@ Project S.T.A.R.S is developed by:
 - Nathan Care
 - John Waugh
 - Blaez Jibben
+- Sean Choi
 
