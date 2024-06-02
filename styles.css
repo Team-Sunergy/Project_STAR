@@ -18,7 +18,7 @@ html {
   width: 100%;
 }
 
-.header {
+header {
   display: flex;
   justify-content: space-between;
   padding: 10px;
@@ -39,7 +39,7 @@ html {
   color: #ffd700;
 }
 
-.main-content {
+main {
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -51,8 +51,8 @@ html {
   background-color: #ddd;
   text-align: center;
   padding: 10px;
-  max-width: 300px; /* Set a maximum width */
-  margin: 0 auto; /* Center it horizontally */
+  max-width: 300px;
+  margin: 0 auto;
 }
 
 .score-calculator label {
@@ -67,7 +67,19 @@ html {
   margin-bottom: 10px;
 }
 
-.details {
+.clock {
+  font-family: Arial, sans-serif;
+  font-size: 2em;
+  color: #333;
+  margin-top: 20px;
+  margin-right: 40px;
+}
+
+.clock span {
+  padding: 0 2px;
+}
+
+.live-data {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -107,15 +119,15 @@ html {
 
 /* Responsive Design */
 @media (min-width: 768px) {
-  .main-content {
+  main {
     flex-direction: row;
   }
 
   .score-calculator {
-    max-width: 250px; /* Reduce width for larger screens */
+    max-width: 250px;
   }
 
-  .details {
+  .live-data {
     flex-direction: row;
     padding-left: 20px;
   }
