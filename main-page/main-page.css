@@ -4,21 +4,24 @@
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: Sunergy;
+  src: url(/fonts/Avenir-Black.ttf);
+}
+
+@font-face {
+  font-family: SunergyOblique;
+  src: url(/fonts/Avenir-BlackOblique.ttf);
+}
+
 body,
 html {
   height: 100%;
-  font-family: Arial, sans-serif;
   background-color: #9a9090;
 }
 
-.container {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  width: 100%;
-}
-
 header {
+  font-family: SunergyOblique;
   display: flex;
   justify-content: space-between;
   padding: 10px;
@@ -26,17 +29,41 @@ header {
   color: #fff;
 }
 
+a {
+  color: #fff;
+  text-decoration: none;
+}
+
 .weather,
-.team-logo {
+.team-logo .clock {
   margin: 0;
 }
 
 .team-logo {
   font-weight: bold;
+  font-size: 2em;
+  margin-top: 6px;
+  margin-left: 5px;
 }
 
 .sunergy {
   color: #ffd700;
+}
+
+.weather {
+  margin-top: 10px;
+  margin-right: 150px;
+  font-size: 1.5em;
+}
+
+.clock {
+  font-family: Sunergy;
+  font-size: 2.5em;
+  margin-right: 5px;
+}
+
+.clock span {
+  padding: 0 2px;
 }
 
 main {
@@ -44,6 +71,7 @@ main {
   flex: 1;
   flex-direction: column;
   padding: 20px;
+  font-family: Sunergy;
 }
 
 .score-calculator {
@@ -65,18 +93,6 @@ main {
   width: 100%;
   padding: 5px;
   margin-bottom: 10px;
-}
-
-.clock {
-  font-family: Arial, sans-serif;
-  font-size: 2em;
-  color: #333;
-  margin-top: 20px;
-  margin-right: 40px;
-}
-
-.clock span {
-  padding: 0 2px;
 }
 
 .live-data {
@@ -110,6 +126,7 @@ main {
   background-color: #eee;
   text-align: center;
   line-height: 60px;
+  font-family: Sunergy;
 }
 
 .error-message {

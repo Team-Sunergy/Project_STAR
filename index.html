@@ -6,15 +6,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>S.T.A.R.S.</title>
   <link rel="icon" type="image/x-icon" href="images/Array Flag.png">
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="main-page/main-page.css" />
 </head>
 
 <body>
   <header>
+    <a href="/index.html">
+      <div class="team-logo">TEAM <span class="sunergy">SUNERGY</span></div>
+    </a>
     <div class="weather">
       Weather: (Temp)/(Wind Speed)/(Wind Direction)/(Condition)
     </div>
-    <div class="team-logo">TEAM <span class="sunergy">SUNERGY</span></div>
+    <div class="clock">
+      <span id="hours"></span><span>:</span><span id="minutes"></span></span><span id="ampm"></span>
+    </div>
   </header>
 
   <main>
@@ -62,9 +67,6 @@
         <p>Difference = 0%</p>
         <p>Batt Temp = 0 F</p>
       </div>
-      <div class="clock">
-        <span id="hours"></span><span>:</span><span id="minutes"></span>
-      </div>
       <div class="mppt">
         <div class="mppt-section">
           <h4>MPPT 1</h4>
@@ -100,7 +102,7 @@
       <p>(Fault Code): (Fault Message): (Solution)</p>
     </div>
   </footer>
-  <script src="script.js"></script>
+  <script src="main-page/main-page.js"></script>
 </body>
 
 </html>

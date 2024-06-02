@@ -70,11 +70,22 @@ function calculateScore() {
 //Clock function
 function updateTime() {
   const now = new Date();
-  const hours = String(now.getHours()).padStart(2, '0');
+  let hours = now.getHours();
   const minutes = String(now.getMinutes()).padStart(2, '0');
+  let ampm = 'AM';
+
+  if (hours > 12) {
+    hours -= 12;
+    ampm = 'PM';
+  }
+
+  if (hours === 0) {
+    hours = 12;
+  }
 
   document.getElementById('hours').textContent = hours;
   document.getElementById('minutes').textContent = minutes;
+  document.getElementById('ampm').textContent = ampm;
 }
 
 updateTime();

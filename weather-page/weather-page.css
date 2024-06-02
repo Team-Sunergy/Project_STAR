@@ -1,0 +1,103 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: Sunergy;
+  src: url(/fonts/Avenir-Black.ttf);
+}
+
+@font-face {
+  font-family: SunergyOblique;
+  src: url(/fonts/Avenir-BlackOblique.ttf);
+}
+
+body,
+html {
+  height: 100%;
+  background-color: #9a9090;
+}
+
+header {
+  font-family: SunergyOblique;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: #333;
+  color: #fff;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.weather,
+.team-logo .clock {
+  margin: 0;
+}
+
+.team-logo {
+  font-weight: bold;
+  font-size: 2em;
+  margin-top: 6px;
+  margin-left: 5px;
+}
+
+.sunergy {
+  color: #ffd700;
+}
+
+.weather {
+  margin-top: 10px;
+  margin-right: 150px;
+  font-size: 1.5em;
+}
+
+.clock {
+  font-family: Sunergy;
+  font-size: 2.5em;
+  margin-right: 5px;
+}
+
+.clock span {
+  padding: 0 2px;
+}
+
+.container {
+  max-width: 600px;
+  margin: 50px auto;
+  text-align: center;
+}
+
+.search-container {
+  margin-bottom: 20px;
+}
+
+input[type="text"] {
+  padding: 10px;
+  width: 200px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+#weatherInfo {
+  padding: 20px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
