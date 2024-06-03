@@ -25,7 +25,7 @@ setInterval(updateTime, 1000);
 function searchWeather() {
     const city = document.getElementById('cityInput').value;
 
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=a8d3de4af4087655a0d47aa2bd5699d8&units=metric`)
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=YOUR_API_KEY&units=metric`)
         .then(response => response.json())
         .then(data => {
             displayWeather(data);
