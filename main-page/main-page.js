@@ -139,3 +139,33 @@ fetchLiveData();
 
 // Set interval to fetch live data periodically (e.g., every 1 second)
 setInterval(fetchLiveData, 1000);
+
+function searchWeather() {
+  const city = document.getElementById('cityInput').value;
+
+  fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=a8d3de4af4087655a0d47aa2bd5699d8&units=metric`)
+      .then(response => response.json())
+      .then(data => {
+          displayWeather(data);
+      })
+      .catch(error => {
+          console.error('Error fetching weather data:', error);
+      });
+}
+
+function displayWeather(data) {
+  const weatherInfo = document.getElementById('weatherInfo');
+  weatherInfo.innerHTML = '';
+
+  const cityName = data.name;
+  const temperature = Math.round((data.main.temp * (9/5)) + 32);
+  const description = data.weather[0].description;
+
+  const weatherHTML = `
+      <h2>${cityName}</h2>
+      <p>Temperature: ${temperature}°F</p>
+      <p>Description: ${description}</p>
+  `;
+
+  weatherInfo.innerHTML = weatherHTML;
+}
