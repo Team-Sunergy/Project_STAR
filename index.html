@@ -63,14 +63,8 @@
         <p>Min Cell = 0%</p>
         <p>Difference = 0%</p>
         <p>Batt Temp = 0 F</p>
-      </div>
+      </div> 
 
-      <div class="weather">
-        <input type="text" id="cityInput" placeholder="Enter city name">
-        <button onclick="searchWeather()">Search</button>
-        <div id="weatherInfo"></div>
-      </div>
-      
       <div class="mppt">
         <div class="mppt-section">
           <h4>MPPT 1</h4>
@@ -97,6 +91,15 @@
           <p>Temp = 0.0 F</p>
         </div>
       </div>
+
+      <div class="weather-widget">
+        <div class="weather-input">
+          <input type="text" id="cityInput" placeholder="Enter city name">
+          <button onclick="searchWeather()">Search</button>
+        </div>
+        <div class="weather-info" id="weatherInfo"></div>
+      </div>       
+      
     </section>
   </main>
 

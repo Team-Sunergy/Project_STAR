@@ -91,59 +91,59 @@ function updateTime() {
 updateTime();
 setInterval(updateTime, 1000);
 
-//Live Data Section
-// Function to fetch live data from Supabase
-function fetchLiveData() {
-  fetch('YOUR_SUPABASE_URL/can_data')
-    .then(response => response.json())
-    .then(data => {
-      data.forEach(item => {
-        // Update status section
-        document.querySelector('.status p:nth-child(1)').textContent = `Speed = ${item.speed} MPH`;
-        document.querySelector('.status p:nth-child(2)').textContent = `Distance = ${item.distance} mi`;
-        document.querySelector('.status p:nth-child(3)').textContent = `SOC = ${item.soc}%`;
-        document.querySelector('.status p:nth-child(4)').textContent = `Intake = ${item.intake}V / ${item.intake_a}A`;
-        document.querySelector('.status p:nth-child(5)').textContent = `Output = ${item.output}V / ${item.output_a}A`;
-        document.querySelector('.status p:nth-child(6)').textContent = `NET = ${item.net}V / ${item.net_a}A`;
-        document.querySelector('.status p:nth-child(7)').textContent = `Max Cell = ${item.max_cell}%`;
-        document.querySelector('.status p:nth-child(8)').textContent = `Min Cell = ${item.min_cell}%`;
-        document.querySelector('.status p:nth-child(9)').textContent = `Difference = ${item.difference}%`;
-        document.querySelector('.status p:nth-child(10)').textContent = `Batt Temp = ${item.batt_temp} F`;
+// //Live Data Section
+// // Function to fetch live data from Supabase
+// function fetchLiveData() {
+//   fetch('YOUR_SUPABASE_URL/can_data')
+//     .then(response => response.json())
+//     .then(data => {
+//       data.forEach(item => {
+//         // Update status section
+//         document.querySelector('.status p:nth-child(1)').textContent = `Speed = ${item.speed} MPH`;
+//         document.querySelector('.status p:nth-child(2)').textContent = `Distance = ${item.distance} mi`;
+//         document.querySelector('.status p:nth-child(3)').textContent = `SOC = ${item.soc}%`;
+//         document.querySelector('.status p:nth-child(4)').textContent = `Intake = ${item.intake}V / ${item.intake_a}A`;
+//         document.querySelector('.status p:nth-child(5)').textContent = `Output = ${item.output}V / ${item.output_a}A`;
+//         document.querySelector('.status p:nth-child(6)').textContent = `NET = ${item.net}V / ${item.net_a}A`;
+//         document.querySelector('.status p:nth-child(7)').textContent = `Max Cell = ${item.max_cell}%`;
+//         document.querySelector('.status p:nth-child(8)').textContent = `Min Cell = ${item.min_cell}%`;
+//         document.querySelector('.status p:nth-child(9)').textContent = `Difference = ${item.difference}%`;
+//         document.querySelector('.status p:nth-child(10)').textContent = `Batt Temp = ${item.batt_temp} F`;
 
-        // Update MPPT sections
-        document.querySelector('.mppt-section:nth-of-type(1) p:nth-of-type(1)').textContent = `Voltage = ${item.mppt1_voltage} V`;
-        document.querySelector('.mppt-section:nth-of-type(1) p:nth-of-type(2)').textContent = `Current = ${item.mppt1_current} A`;
-        document.querySelector('.mppt-section:nth-of-type(1) p:nth-of-type(3)').textContent = `Temp = ${item.mppt1_temp} F`;
+//         // Update MPPT sections
+//         document.querySelector('.mppt-section:nth-of-type(1) p:nth-of-type(1)').textContent = `Voltage = ${item.mppt1_voltage} V`;
+//         document.querySelector('.mppt-section:nth-of-type(1) p:nth-of-type(2)').textContent = `Current = ${item.mppt1_current} A`;
+//         document.querySelector('.mppt-section:nth-of-type(1) p:nth-of-type(3)').textContent = `Temp = ${item.mppt1_temp} F`;
 
-        document.querySelector('.mppt-section:nth-of-type(2) p:nth-of-type(1)').textContent = `Voltage = ${item.mppt2_voltage} V`;
-        document.querySelector('.mppt-section:nth-of-type(2) p:nth-of-type(2)').textContent = `Current = ${item.mppt2_current} A`;
-        document.querySelector('.mppt-section:nth-of-type(2) p:nth-of-type(3)').textContent = `Temp = ${item.mppt2_temp} F`;
+//         document.querySelector('.mppt-section:nth-of-type(2) p:nth-of-type(1)').textContent = `Voltage = ${item.mppt2_voltage} V`;
+//         document.querySelector('.mppt-section:nth-of-type(2) p:nth-of-type(2)').textContent = `Current = ${item.mppt2_current} A`;
+//         document.querySelector('.mppt-section:nth-of-type(2) p:nth-of-type(3)').textContent = `Temp = ${item.mppt2_temp} F`;
 
-        // Update motor sections
-        document.querySelector('.motor-section:nth-of-type(1) p:nth-of-type(1)').textContent = `Voltage = ${item.motor1_voltage} V`;
-        document.querySelector('.motor-section:nth-of-type(1) p:nth-of-type(2)').textContent = `Current = ${item.motor1_current} A`;
-        document.querySelector('.motor-section:nth-of-type(1) p:nth-of-type(3)').textContent = `Temp = ${item.motor1_temp} F`;
+//         // Update motor sections
+//         document.querySelector('.motor-section:nth-of-type(1) p:nth-of-type(1)').textContent = `Voltage = ${item.motor1_voltage} V`;
+//         document.querySelector('.motor-section:nth-of-type(1) p:nth-of-type(2)').textContent = `Current = ${item.motor1_current} A`;
+//         document.querySelector('.motor-section:nth-of-type(1) p:nth-of-type(3)').textContent = `Temp = ${item.motor1_temp} F`;
 
-        document.querySelector('.motor-section:nth-of-type(2) p:nth-of-type(1)').textContent = `Voltage = ${item.motor2_voltage} V`;
-        document.querySelector('.motor-section:nth-of-type(2) p:nth-of-type(2)').textContent = `Current = ${item.motor2_current} A`;
-        document.querySelector('.motor-section:nth-of-type(2) p:nth-of-type(3)').textContent = `Temp = ${item.motor2_temp} F`;
-      });
-    })
-    .catch(error => {
-      console.error('Error fetching live data:', error);
-    });
-}
+//         document.querySelector('.motor-section:nth-of-type(2) p:nth-of-type(1)').textContent = `Voltage = ${item.motor2_voltage} V`;
+//         document.querySelector('.motor-section:nth-of-type(2) p:nth-of-type(2)').textContent = `Current = ${item.motor2_current} A`;
+//         document.querySelector('.motor-section:nth-of-type(2) p:nth-of-type(3)').textContent = `Temp = ${item.motor2_temp} F`;
+//       });
+//     })
+//     .catch(error => {
+//       console.error('Error fetching live data:', error);
+//     });
+// }
 
-// Call fetchLiveData function initially
-fetchLiveData();
+// // Call fetchLiveData function initially
+// fetchLiveData();
 
-// Set interval to fetch live data periodically (e.g., every 1 second)
-setInterval(fetchLiveData, 1000);
+// // Set interval to fetch live data periodically (e.g., every 1 second)
+// setInterval(fetchLiveData, 1000);
 
 function searchWeather() {
   const city = document.getElementById('cityInput').value;
 
-  fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=a8d3de4af4087655a0d47aa2bd5699d8&units=metric`)
+  fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=a8d3de4af4087655a0d47aa2bd5699d8&units=imperial`)
       .then(response => response.json())
       .then(data => {
           displayWeather(data);
@@ -153,18 +153,40 @@ function searchWeather() {
       });
 }
 
+function getWindDirection(angle) {
+  const directions = ['↓ N', '↙ NE', '← E', '↖ SE', '↑ S', '↗ SW', '→ W', '↘ NW'];
+  return directions[Math.round(angle / 45) % 8];
+}
+
+function capitalizeWords(str) {
+  return str.replace(/\b\w/g, function(char) {
+    return char.toUpperCase();
+  });
+}
+
 function displayWeather(data) {
   const weatherInfo = document.getElementById('weatherInfo');
   weatherInfo.innerHTML = '';
 
   const cityName = data.name;
-  const temperature = Math.round((data.main.temp * (9/5)) + 32);
-  const description = data.weather[0].description;
+  const iconCode = data.weather[0].icon;
+  const iconUrl = `http://openweathermap.org/img/w/${iconCode}.png`;
+  const temperature = Math.round(data.main.temp);
+  const description = capitalizeWords(data.weather[0].description);
+  const humidity = data.main.humidity;
+  const windSpeed = data.wind.speed;
+  const windDirection = getWindDirection(data.wind.deg);
+  const clouds = data.clouds.all;
 
   const weatherHTML = `
+      <img src="${iconUrl}" alt="Weather Icon">
       <h2>${cityName}</h2>
-      <p>Temperature: ${temperature}°F</p>
-      <p>Description: ${description}</p>
+      <h3>${temperature}°F</h3>
+      <p>${description}</p>
+      <p>Clouds: ${clouds}% </p>
+      <p>Humidity: ${humidity}%</p>
+      <p>Wind Speed: ${windSpeed} MPH</p>
+      <p>Wind Direction: ${windDirection}</p>
   `;
 
   weatherInfo.innerHTML = weatherHTML;
