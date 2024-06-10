@@ -63,7 +63,6 @@ a {
 main {
   display: flex;
   flex: 1;
-  flex-direction: column;
   padding: 20px;
   font-family: Sunergy;
 }
@@ -90,6 +89,14 @@ main {
   width: 100%;
   padding: 5px;
   margin-bottom: 10px;
+}
+
+#result{
+  height: 30px;
+  font-size: 20px;
+  font-weight: bold;
+  color: green;
+  margin-top: 10px;
 }
 
 .live-data {

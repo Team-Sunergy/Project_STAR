@@ -1,4 +1,3 @@
-//Score Calculator Form
 document.addEventListener("DOMContentLoaded", function () {
   // Add event listener to the form inputs
   const formInputs = document.querySelectorAll("#movForm input[type='number']");
@@ -58,9 +57,9 @@ function calculateScore() {
   const S =
     energyUsage !== 0
       ? (totalPersonMiles / energyUsage) *
-      completionFactor *
-      targetSpeedDerate *
-      practicalityScore
+        completionFactor *
+        targetSpeedDerate *
+        practicalityScore
       : 0;
 
   // Display the result
@@ -91,54 +90,6 @@ function updateTime() {
 updateTime();
 setInterval(updateTime, 1000);
 
-// //Live Data Section
-// // Function to fetch live data from Supabase
-// function fetchLiveData() {
-//   fetch('YOUR_SUPABASE_URL/can_data')
-//     .then(response => response.json())
-//     .then(data => {
-//       data.forEach(item => {
-//         // Update status section
-//         document.querySelector('.status p:nth-child(1)').textContent = `Speed = ${item.speed} MPH`;
-//         document.querySelector('.status p:nth-child(2)').textContent = `Distance = ${item.distance} mi`;
-//         document.querySelector('.status p:nth-child(3)').textContent = `SOC = ${item.soc}%`;
-//         document.querySelector('.status p:nth-child(4)').textContent = `Intake = ${item.intake}V / ${item.intake_a}A`;
-//         document.querySelector('.status p:nth-child(5)').textContent = `Output = ${item.output}V / ${item.output_a}A`;
-//         document.querySelector('.status p:nth-child(6)').textContent = `NET = ${item.net}V / ${item.net_a}A`;
-//         document.querySelector('.status p:nth-child(7)').textContent = `Max Cell = ${item.max_cell}%`;
-//         document.querySelector('.status p:nth-child(8)').textContent = `Min Cell = ${item.min_cell}%`;
-//         document.querySelector('.status p:nth-child(9)').textContent = `Difference = ${item.difference}%`;
-//         document.querySelector('.status p:nth-child(10)').textContent = `Batt Temp = ${item.batt_temp} F`;
-
-//         // Update MPPT sections
-//         document.querySelector('.mppt-section:nth-of-type(1) p:nth-of-type(1)').textContent = `Voltage = ${item.mppt1_voltage} V`;
-//         document.querySelector('.mppt-section:nth-of-type(1) p:nth-of-type(2)').textContent = `Current = ${item.mppt1_current} A`;
-//         document.querySelector('.mppt-section:nth-of-type(1) p:nth-of-type(3)').textContent = `Temp = ${item.mppt1_temp} F`;
-
-//         document.querySelector('.mppt-section:nth-of-type(2) p:nth-of-type(1)').textContent = `Voltage = ${item.mppt2_voltage} V`;
-//         document.querySelector('.mppt-section:nth-of-type(2) p:nth-of-type(2)').textContent = `Current = ${item.mppt2_current} A`;
-//         document.querySelector('.mppt-section:nth-of-type(2) p:nth-of-type(3)').textContent = `Temp = ${item.mppt2_temp} F`;
-
-//         // Update motor sections
-//         document.querySelector('.motor-section:nth-of-type(1) p:nth-of-type(1)').textContent = `Voltage = ${item.motor1_voltage} V`;
-//         document.querySelector('.motor-section:nth-of-type(1) p:nth-of-type(2)').textContent = `Current = ${item.motor1_current} A`;
-//         document.querySelector('.motor-section:nth-of-type(1) p:nth-of-type(3)').textContent = `Temp = ${item.motor1_temp} F`;
-
-//         document.querySelector('.motor-section:nth-of-type(2) p:nth-of-type(1)').textContent = `Voltage = ${item.motor2_voltage} V`;
-//         document.querySelector('.motor-section:nth-of-type(2) p:nth-of-type(2)').textContent = `Current = ${item.motor2_current} A`;
-//         document.querySelector('.motor-section:nth-of-type(2) p:nth-of-type(3)').textContent = `Temp = ${item.motor2_temp} F`;
-//       });
-//     })
-//     .catch(error => {
-//       console.error('Error fetching live data:', error);
-//     });
-// }
-
-// // Call fetchLiveData function initially
-// fetchLiveData();
-
-// // Set interval to fetch live data periodically (e.g., every 1 second)
-// setInterval(fetchLiveData, 1000);
 
 function searchWeather() {
   const city = document.getElementById('cityInput').value;
@@ -163,6 +114,42 @@ function capitalizeWords(str) {
     return char.toUpperCase();
   });
 }
+
+function searchWeatherByLocation() {
+  // Fetch the user's IP address
+  fetch('https://api.ipify.org?format=json')
+    .then(response => response.json())
+    .then(ipData => {
+      // Use the IP address to fetch geolocation data
+      fetch(`https://ipinfo.io/${ipData.ip}?token=607e2af9981046`)
+        .then(response => response.json())
+        .then(locationData => {
+          const city = locationData.city;
+          fetchWeatherByCity(city);
+        })
+        .catch(error => {
+          console.error('Error fetching geolocation data:', error);
+        });
+    })
+    .catch(error => {
+      console.error('Error fetching IP address:', error);
+    });
+}
+
+function fetchWeatherByCity(city) {
+  fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=a8d3de4af4087655a0d47aa2bd5699d8&units=imperial`)
+      .then(response => response.json())
+      .then(data => {
+          displayWeather(data);
+      })
+      .catch(error => {
+          console.error('Error fetching weather data:', error);
+      });
+}
+
+// Call this function to fetch weather based on user's location
+searchWeatherByLocation();
+
 
 function displayWeather(data) {
   const weatherInfo = document.getElementById('weatherInfo');
