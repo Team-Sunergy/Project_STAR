@@ -164,10 +164,10 @@ function displayWeather(data) {
   const clouds = data.clouds.all;
 
   const weatherHTML = `
-      <img src="${iconUrl}" alt="Weather Icon">
+      <img src="${iconUrl}" alt="Weather Icon" style="width: 200px; height: 200px;">
       <h2>${cityName}</h2>
       <h3>${temperature}°F</h3>
-      <p>${description}</p>
+      <p style="  margin-bottom: 50px; color: #333;">${description}</p>
       <p>Clouds: ${clouds}% </p>
       <p>Humidity: ${humidity}%</p>
       <p>Wind Speed: ${windSpeed} MPH</p>
@@ -176,4 +176,5 @@ function displayWeather(data) {
 
   weatherInfo.innerHTML = weatherHTML;
 }
+
 

@@ -53,16 +53,20 @@
 
     <section class="live-data">
       <div class="status">
-        <p>Speed = 00 MPH</p>
-        <p>Distance = 0.0 mi</p>
-        <p>SOC = 0.0%</p>
+        <div class="status-col1">
+          <p>Speed = 00 MPH</p>
+          <p>Distance = 0.0 mi</p>
+          <p>SOC = 0.0%</p>
+          <p>Batt Temp = 0 F</p>
+          <p>Difference = 0%</p>
+        </div>
+        <div class="status-col2">
         <p>Intake = 0V / 0A</p>
         <p>Output = 0V / 0A</p>
         <p>NET = 0V / 0A</p>
         <p>Max Cell = 0%</p>
         <p>Min Cell = 0%</p>
-        <p>Difference = 0%</p>
-        <p>Batt Temp = 0 F</p>
+        </div>
       </div>
       <div class="mppt">
         <div class="mppt-section">
@@ -90,16 +94,16 @@
           <p>Temp = 0.0 F</p>
         </div>
       </div>
-
-      <div class="weather-widget">
-        <div class="weather-input">
-          <input type="text" id="cityInput" placeholder="Enter city">
-          <button onclick="searchWeather()">Search</button>
-        </div>
-        <div class="weather-info" id="weatherInfo"></div>
-      </div>
-
     </section>
+
+    <section class="weather-widget">
+      <div class="weather-input">
+        <input type="text" id="cityInput" placeholder="Enter city">
+        <button onclick="searchWeather()">Search</button>
+      </div>
+      <div class="weather-info" id="weatherInfo"></div>
+    </section>
+
   </main>
 
   <footer class="footer">
