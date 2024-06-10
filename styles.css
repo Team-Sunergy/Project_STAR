@@ -4,21 +4,24 @@
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: Sunergy;
+  src: url(/fonts/Avenir-Black.ttf);
+}
+
+@font-face {
+  font-family: SunergyOblique;
+  src: url(/fonts/Avenir-BlackOblique.ttf);
+}
+
 body,
 html {
   height: 100%;
-  font-family: Arial, sans-serif;
   background-color: #9a9090;
 }
 
-.container {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  width: 100%;
-}
-
-.header {
+header {
+  font-family: SunergyOblique;
   display: flex;
   justify-content: space-between;
   padding: 10px;
@@ -26,33 +29,54 @@ html {
   color: #fff;
 }
 
+a {
+  color: #fff;
+  text-decoration: none;
+}
+
 .weather,
-.team-logo {
+.team-logo .clock {
   margin: 0;
 }
 
 .team-logo {
   font-weight: bold;
+  font-size: 2em;
+  margin-top: 6px;
+  margin-left: 5px;
 }
 
 .sunergy {
   color: #ffd700;
 }
 
-.main-content {
+.clock {
+  font-family: Sunergy;
+  font-size: 2.5em;
+  margin-right: 5px;
+}
+
+.clock span {
+  padding: 0 2px;
+}
+
+main {
   display: flex;
   flex: 1;
-  flex-direction: column;
   padding: 20px;
+  font-family: Sunergy;
 }
 
 .score-calculator {
   flex: 1;
   background-color: #ddd;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
   padding: 10px;
-  max-width: 300px; /* Set a maximum width */
-  margin: 0 auto; /* Center it horizontally */
+  max-width: 300px;
+  max-height: 1000px;
+  margin: 0 auto;
+  border-radius: 10px;
 }
 
 .score-calculator label {
@@ -67,12 +91,81 @@ html {
   margin-bottom: 10px;
 }
 
-.details {
+#result{
+  height: 30px;
+  font-size: 20px;
+  font-weight: bold;
+  color: green;
+  margin-top: 10px;
+}
+
+.live-data {
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  padding: 20px 0;
+}
+
+.weather-widget {
+  background-color: #ddd;
+  font-family: Sunergy;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 300px;
+  max-height: 1000px;
+  margin-left: 20px;
+}
+
+.weather-input {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.weather-input input {
+  width: calc(100% - 100px);
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.weather-input button {
+  width: 80px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+.weather-info {
+  text-align: center;
+  font-family: Sunergy;
+}
+
+.weather-info img{
+  
+}
+
+.weather-info h2 {
+  font-size: 2.2em;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.weather-info h3{
+  font-size: 3em;
+  color: #333;
+}
+
+.weather-info p {
+  font-size: 1.5em;
+  color: #636363;
+  margin-bottom: 5px;
 }
 
 .status,
@@ -85,6 +178,7 @@ html {
 .motor-section {
   padding: 10px;
   border: solid;
+  margin-bottom: 10px;
 }
 
 .mppt-section h4,
@@ -98,6 +192,7 @@ html {
   background-color: #eee;
   text-align: center;
   line-height: 60px;
+  font-family: Sunergy;
 }
 
 .error-message {
@@ -107,15 +202,15 @@ html {
 
 /* Responsive Design */
 @media (min-width: 768px) {
-  .main-content {
+  main {
     flex-direction: row;
   }
 
   .score-calculator {
-    max-width: 250px; /* Reduce width for larger screens */
+    max-width: 250px;
   }
 
-  .details {
+  .live-data {
     flex-direction: row;
     padding-left: 20px;
   }
