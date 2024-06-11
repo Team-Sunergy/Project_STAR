@@ -170,29 +170,38 @@ function displayWeather(data) {
 
 //Live Data Section
 function updateLiveData() {
-  // Update live data here
   const liveData = {
-    
+    speed: document.querySelector('.status-col1 p:nth-child(1)').innerText.split('=')[1].trim().split(' ')[0],
+    distance: document.querySelector('.status-col1 p:nth-child(2)').innerText.split('=')[1].trim().split(' ')[0],
+    soc: document.querySelector('.status-col1 p:nth-child(3)').innerText.split('=')[1].trim().split('%')[0],
+    battTemp: document.querySelector('.status-col1 p:nth-child(4)').innerText.split('=')[1].trim().split(' ')[0],
+    difference: document.querySelector('.status-col1 p:nth-child(5)').innerText.split('=')[1].trim().split('%')[0],
+    intakeVoltage: document.querySelector('.status-col2 p:nth-child(1)').innerText.split('=')[1].trim().split(' ')[0],
+    intakeCurrent: document.querySelector('.status-col2 p:nth-child(1)').innerText.split('=')[1].trim().split(' ')[2],
+    outputVoltage: document.querySelector('.status-col2 p:nth-child(2)').innerText.split('=')[1].trim().split(' ')[0],
+    outputCurrent: document.querySelector('.status-col2 p:nth-child(2)').innerText.split('=')[1].trim().split(' ')[2],
+    netVoltage: document.querySelector('.status-col2 p:nth-child(3)').innerText.split('=')[1].trim().split(' ')[0],
+    netCurrent: document.querySelector('.status-col2 p:nth-child(3)').innerText.split('=')[1].trim().split(' ')[2],
+    maxCell: document.querySelector('.status-col2 p:nth-child(4)').innerText.split('=')[1].trim().split('%')[0],
+    minCell: document.querySelector('.status-col2 p:nth-child(5)').innerText.split('=')[1].trim().split('%')[0],
   };
 
-  // Send live data to server
-  fetch('/update_live_data', {
+  fetch('http://152.10.118.220:8080/update_live_data', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(liveData)
   })
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Failed to update live data');
-    }
-  })
-  .catch(error => {
-    console.error('Error updating live data:', error);
-  });
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Failed to update live data');
+      }
+    })
+    .catch(error => {
+      console.error('Error updating live data:', error);
+    });
 }
 
 // Call updateLiveData() whenever you want to update the live data
 setInterval(updateLiveData, 1000);
-

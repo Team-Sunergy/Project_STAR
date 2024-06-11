@@ -6,12 +6,12 @@
 
 @font-face {
   font-family: Sunergy;
-  src: url(/client/fonts/Avenir-Black.ttf);
+  src: url(/fonts/Avenir-Black.ttf);
 }
 
 @font-face {
   font-family: SunergyOblique;
-  src: url(/client/fonts/Avenir-BlackOblique.ttf);
+  src: url(/fonts/Avenir-BlackOblique.ttf);
 }
 
 body,
