@@ -169,24 +169,21 @@ function displayWeather(data) {
 }
 
 //Live Data Section
+async function fetchData() {
+  try {
+    const response = await fetch(`${SERVER_HOST}/update_live_data`);
+    // Handle response
+  } catch (error) {
+    console.error('Error fetching live data:', error);
+  }
+}
+
 function updateLiveData() {
   const liveData = {
-    speed: document.querySelector('.status-col1 p:nth-child(1)').innerText.split('=')[1].trim().split(' ')[0],
-    distance: document.querySelector('.status-col1 p:nth-child(2)').innerText.split('=')[1].trim().split(' ')[0],
-    soc: document.querySelector('.status-col1 p:nth-child(3)').innerText.split('=')[1].trim().split('%')[0],
-    battTemp: document.querySelector('.status-col1 p:nth-child(4)').innerText.split('=')[1].trim().split(' ')[0],
-    difference: document.querySelector('.status-col1 p:nth-child(5)').innerText.split('=')[1].trim().split('%')[0],
-    intakeVoltage: document.querySelector('.status-col2 p:nth-child(1)').innerText.split('=')[1].trim().split(' ')[0],
-    intakeCurrent: document.querySelector('.status-col2 p:nth-child(1)').innerText.split('=')[1].trim().split(' ')[2],
-    outputVoltage: document.querySelector('.status-col2 p:nth-child(2)').innerText.split('=')[1].trim().split(' ')[0],
-    outputCurrent: document.querySelector('.status-col2 p:nth-child(2)').innerText.split('=')[1].trim().split(' ')[2],
-    netVoltage: document.querySelector('.status-col2 p:nth-child(3)').innerText.split('=')[1].trim().split(' ')[0],
-    netCurrent: document.querySelector('.status-col2 p:nth-child(3)').innerText.split('=')[1].trim().split(' ')[2],
-    maxCell: document.querySelector('.status-col2 p:nth-child(4)').innerText.split('=')[1].trim().split('%')[0],
-    minCell: document.querySelector('.status-col2 p:nth-child(5)').innerText.split('=')[1].trim().split('%')[0],
+
   };
 
-  fetch('http://152.10.118.220:8080/update_live_data', {
+  fetch('http://127.0.0.1:8080/update_live_data', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

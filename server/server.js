@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
@@ -6,6 +7,12 @@ const app = express();
 app.use(express.json());
 
 const CSV_FILE_PATH = path.join(__dirname, 'live_data.csv');
+
+app.use('/client', express.static(path.join(__dirname, 'client')));
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'index.html'));
+});
 
 // Route to receive live data updates
 app.post('/update_live_data', (req, res) => {
@@ -23,9 +30,7 @@ app.post('/update_live_data', (req, res) => {
     });
 });
 
-const PORT = 8080;
-const HOST = '152.10.118.220';
-
-app.listen(PORT, HOST, () => {
-    console.log(`Server running on http://${HOST}:${PORT}`);
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on ${process.env.SERVER_HOST}:${PORT}`);
 });
