@@ -176,5 +176,3 @@ function displayWeather(data) {
 
   weatherInfo.innerHTML = weatherHTML;
 }
-
-

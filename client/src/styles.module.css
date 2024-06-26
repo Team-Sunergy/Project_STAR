@@ -1,0 +1,270 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: Sunergy;
+  src: url(../public/fonts/Avenir-Black.ttf);
+}
+
+@font-face {
+  font-family: SunergyOblique;
+  src: url(../public/fonts/Avenir-BlackOblique.ttf);
+}
+
+body,
+html {
+  height: 100%;
+  background-color: #9a9090;
+}
+
+main{
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+header {
+  font-family: SunergyOblique;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: solid #000;
+  background-color: #333;
+  color: #fff;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.weather,
+.team-logo .clock {
+  margin: 0;
+}
+
+.team-logo {
+  font-weight: bold;
+  font-size: 2em;
+  margin-top: 6px;
+  margin-left: 5px;
+}
+
+.sunergy {
+  color: #ffd700;
+}
+
+.clock {
+  font-family: Sunergy;
+  font-size: 2.5em;
+  margin-right: 5px;
+}
+
+.clock span {
+  padding: 0 2px;
+}
+
+main {
+  display: flex;
+  flex: 1;
+  padding: 20px;
+  font-family: Sunergy;
+}
+
+.score-calculator,
+.weather-widget{
+  width: 100%;
+  height: 100%;
+  max-width: 300px;
+  height: 700px;
+}
+
+.score-calculator {
+  background-color: #ddd;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  padding: 20px;
+  border: solid;
+  border-radius: 12px;
+}
+
+.score-calculator label {
+  display: block;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.score-calculator input {
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+.score-calculator h3{
+  font-size: 1.75em;
+  margin-bottom: 5px;
+}
+
+.score-calculator #result{
+  margin-top: 20px;
+  font-size: 2em;
+}
+
+.weather-widget {
+  background-color: #ddd;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  padding: 20px;
+  border: solid;
+  border-radius: 12px;
+}
+
+.weather-input {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.weather-input input {
+  width: calc(100% - 100px);
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.weather-input button {
+  width: 80px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+.weather-info {
+  text-align: center;
+  font-family: Sunergy;
+}
+
+.weather-info h2 {
+  font-size: 2.5em;
+  color: #333;
+}
+
+.weather-info h3 {
+  font-size: 3em;
+  color: #333;
+}
+
+.weather-info p {
+  font-size: 1.4em;
+  color: #636363;
+  margin-bottom: 5px;
+}
+
+#result {
+  height: 30px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #13cc4e;
+  margin-top: 10px;
+}
+
+.live-data {
+  display: grid;
+  grid-template-rows: repeat(2, auto);
+  grid-template-columns: auto;
+  width: 100%;
+}
+
+.status{
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: repeat(2, auto);
+  gap: 16px;
+  padding: 20px;
+  padding-bottom: 0;
+}
+
+.status-col1,
+.status-col2{
+  background-color: #ddd;
+  border: solid;
+  border-radius: 12px;
+  padding-top: 35px;
+}
+
+.status p{
+  font-size: 3em;
+  text-align: center;
+}
+
+.mppt{
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: repeat(4, auto);
+  gap: 16px;
+  padding: 20px;
+  padding-top: 0;
+}
+
+.mppt-section,
+.motor-section {
+  margin: auto;
+  width: 100%;
+  padding: 20px;
+  border: solid;
+  border-radius: 12px;
+  text-align: center;
+  background-color: #ddd;
+}
+
+.mppt-section h4,
+.motor-section h4 {
+  font-size: 2em;
+  margin: 0 0 10px 0;
+}
+
+.mppt-section p,
+.motor-section p{
+  font-size: 1.5em;
+  color: #636363;
+}
+
+.footer {
+  width: 100%;
+  height: 130px;
+  border-top: solid #000;
+  background-color: #333;
+  text-align: center;
+  line-height: 60px;
+  font-family: Sunergy;
+}
+
+.error-message {
+  font-size: 1.75em;
+  color: #d40028;
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+  main {
+    flex-direction: row;
+  }
+
+  .live-data {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .status,
+  .mppt {
+    width: 100%;
+  }
+}

@@ -1,15 +1,21 @@
 import React from 'react';
+import Header from './components/Header';
+import ScoreCalculator from './components/ScoreCalculator';
 import LiveData from './components/LiveData';
+import WeatherWidget from './components/WeatherWidget';
+import Footer from './components/Footer';
+import './styles.module.css'; 
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>Live Data</h1>
-      </header>
+      <Header />
       <main>
+        <ScoreCalculator />
         <LiveData />
+        <WeatherWidget />
       </main>
+      <Footer />
     </div>
   );
 }
