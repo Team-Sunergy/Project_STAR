@@ -39,28 +39,28 @@ const LiveData = () => {
   }, []);
 
   const updateValues = (newData) => {
-    setSpeed(`${newData.speed} MPH`);
-    setDistance(`${newData.distance} mi`);
-    setSoc(`${newData.soc}%`);
-    setBattTemp(`${newData.battTemp} F`);
-    setDifference(`${newData.difference}%`);
-    setIntake(`${newData.intakeVoltage}V / ${newData.intakeCurrent}A`);
-    setOutput(`${newData.outputVoltage}V / ${newData.outputCurrent}A`);
-    setNet(`${newData.netVoltage}V / ${newData.netCurrent}A`);
-    setMaxCell(`${newData.maxCell}%`);
-    setMinCell(`${newData.minCell}%`);
-    setMppt1Voltage(`${newData.mppt1Voltage} V`);
-    setMppt1Current(`${newData.mppt1Current} A`);
-    setMppt1Temp(`${newData.mppt1Temp} F`);
-    setMppt2Voltage(`${newData.mppt2Voltage} V`);
-    setMppt2Current(`${newData.mppt2Current} A`);
-    setMppt2Temp(`${newData.mppt2Temp} F`);
-    setMotor1Voltage(`${newData.motor1Voltage} V`);
-    setMotor1Current(`${newData.motor1Current} A`);
-    setMotor1Temp(`${newData.motor1Temp} F`);
-    setMotor2Voltage(`${newData.motor2Voltage} V`);
-    setMotor2Current(`${newData.motor2Current} A`);
-    setMotor2Temp(`${newData.motor2Temp} F`);
+    setSpeed(`${newData.speed}`);
+    setDistance(`${newData.distance}`);
+    setSoc(`${newData.soc}`);
+    setBattTemp(`${newData.battTemp}`);
+    setDifference(`${newData.difference}`);
+    setIntake(`${newData.intakeVoltage} / ${newData.intakeCurrent}`);
+    setOutput(`${newData.outputVoltage} / ${newData.outputCurrent}`);
+    setNet(`${newData.netVoltage} / ${newData.netCurrent}`);
+    setMaxCell(`${newData.maxCell}`);
+    setMinCell(`${newData.minCell}`);
+    setMppt1Voltage(`${newData.mppt1Voltage}`);
+    setMppt1Current(`${newData.mppt1Current}`);
+    setMppt1Temp(`${newData.mppt1Temp}`);
+    setMppt2Voltage(`${newData.mppt2Voltage}`);
+    setMppt2Current(`${newData.mppt2Current}`);
+    setMppt2Temp(`${newData.mppt2Temp}`);
+    setMotor1Voltage(`${newData.motor1Voltage}`);
+    setMotor1Current(`${newData.motor1Current}`);
+    setMotor1Temp(`${newData.motor1Temp}`);
+    setMotor2Voltage(`${newData.motor2Voltage}`);
+    setMotor2Current(`${newData.motor2Current}`);
+    setMotor2Temp(`${newData.motor2Temp}`);
   };
 
   return (

@@ -77,7 +77,7 @@ const simulateLoRaData = () => {
     dataBuffer.push(record);
     io.emit('newData', record);
     console.log(record);
-  }, 1000);
+  }, 100);
 };
 
 simulateLoRaData();
@@ -99,4 +99,4 @@ setInterval(() => {
         dataBuffer = [];
       });
   }
-}, 1000);
+}, 100);
