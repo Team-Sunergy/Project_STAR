@@ -34,6 +34,7 @@ header {
   border-bottom: solid #000;
   background-color: #333;
   color: #fff;
+  height: 113px;
 }
 
 a {
@@ -48,9 +49,9 @@ a {
 
 .teamLogo {
   font-weight: bold;
-  font-size: 2em;
-  margin-top: 6px;
-  margin-left: 5px;
+  font-size: 3em;
+  margin-top: 15px;
+  margin-left: 10px;
 }
 
 .sunergy {
@@ -59,8 +60,9 @@ a {
 
 .clock {
   font-family: Sunergy;
-  font-size: 2.5em;
-  margin-right: 5px;
+  font-size: 3.5em;
+  margin-top: 10px;
+  margin-right: 10px;
 }
 
 .clock span {
@@ -71,7 +73,9 @@ main {
   display: flex;
   flex: 1;
   padding: 20px;
+  padding-bottom: 0px;
   font-family: Sunergy;
+  overflow: hidden;
 }
 
 .scoreCalculator,
@@ -79,7 +83,7 @@ main {
   width: 100%;
   height: 100%;
   max-width: 300px;
-  height: 700px;
+  height: 650px;
 }
 
 .scoreCalculator {
@@ -113,7 +117,6 @@ main {
   font-size: 2em;
   font-weight: bold;
   color: #11b445;
-  margin-top: 25px;
 }
 
 .weatherWidget {
@@ -177,6 +180,7 @@ main {
   grid-template-rows: repeat(2, auto);
   grid-template-columns: auto;
   width: 100%;
+  padding-top: 25px;
 }
 
 .status{
@@ -186,7 +190,7 @@ main {
   gap: 16px;
   padding: 20px;
   padding-bottom: 0;
-  height: 100%;
+  height: 110%;
 }
 
 .statusCol1,
@@ -194,13 +198,13 @@ main {
   background-color: #ddd;
   border: solid;
   border-radius: 12px;
-  padding-top: 35px;
+  padding-top: 25px;
   height: 100%;
   overflow: hidden;
 }
 
 .status p{
-  font-size: 3em;
+  font-size: 2.5em;
   text-align: center;
 }
 
@@ -210,7 +214,8 @@ main {
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
   padding: 20px;
-  padding-top: 0;
+  padding-top: 50px;
+  padding-bottom: 70px;
   height: 100%;
 }
 
@@ -224,6 +229,7 @@ main {
   text-align: center;
   background-color: #ddd;
   overflow: hidden;
+  
 }
 
 .mpptSection h4,
@@ -239,17 +245,21 @@ main {
 }
 
 .footer {
-  width: 100%;
-  height: 135px;
+  width: calc(100% + 1280px); /* Increase the width by 40px (20px on each side) */
+  height: 150px;
   border-top: solid #000;
   background-color: #333;
   text-align: center;
   line-height: 60px;
   font-family: Sunergy;
+  margin-left: -640px; /* Move it 20px to the left */
+  margin-right: -640px; /* Move it 20px to the right */
+  z-index: 2;
 }
 
 .errorMessage {
-  font-size: 1.75em;
+  padding-top: 10px;
+  font-size: 2.25em;
   color: #d40028;
 }
 

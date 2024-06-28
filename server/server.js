@@ -36,6 +36,9 @@ const csvWriter = createObjectCsvWriter({
     { id: 'motor2Voltage', title: 'Motor 2 Voltage' },
     { id: 'motor2Current', title: 'Motor 2 Current' },
     { id: 'motor2Temp', title: 'Motor 2 Temp' },
+    { id: 'faultCode', title: 'Fault Code'},
+    { id: 'faultMessage', title: 'Fault Message'},
+    { id: 'faultSolution', title: 'Fault Solution'},
   ]
 });
 
@@ -70,6 +73,9 @@ const simulateLoRaData = () => {
       motor2Voltage: (Math.random() * 50).toFixed(1) + ' V',
       motor2Current: (Math.random() * 5).toFixed(1) + ' A',
       motor2Temp: (Math.random() * 50).toFixed(1) + ' F',
+      faultCode: '0x00000000',
+      faultMessage: 'Car Broke',
+      faultSolution: 'More Beans',
     };
 
     const timestamp = new Date().toISOString();

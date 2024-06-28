@@ -3,7 +3,7 @@ import Header from './components/Header';
 import ScoreCalculator from './components/ScoreCalculator';
 import LiveData from './components/LiveData';
 import WeatherWidget from './components/WeatherWidget';
-import Footer from './components/Footer';
+// import Footer from './components/Footer';
 import './styles.module.css'
 
 function App() {
@@ -54,7 +54,7 @@ function App() {
         <LiveData />
         <WeatherWidget />
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

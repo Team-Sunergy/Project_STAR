@@ -27,6 +27,9 @@ const LiveData = () => {
   const [motor2Voltage, setMotor2Voltage] = useState('0.0 V');
   const [motor2Current, setMotor2Current] = useState('0.0 A');
   const [motor2Temp, setMotor2Temp] = useState('0.0 F');
+  const [faultCode, setCode] = useState('Fault Code');
+  const [faultMessage, setMessage] = useState('Fault Message');
+  const [faultSolution, setSolution] = useState('Fault Solution');
 
   useEffect(() => {
     socket.on('newData', (newData) => {
@@ -61,6 +64,9 @@ const LiveData = () => {
     setMotor2Voltage(`${newData.motor2Voltage}`);
     setMotor2Current(`${newData.motor2Current}`);
     setMotor2Temp(`${newData.motor2Temp}`);
+    setCode(`${newData.faultCode}`);
+    setMessage(`${newData.faultMessage}`);
+    setSolution(`${newData.faultSolution}`);
   };
 
   return (
@@ -107,6 +113,12 @@ const LiveData = () => {
           <p>Temp = {motor2Temp}</p>
         </div>
       </div>
+      <footer className={styles.footer}>
+      <div className={styles.errorMessage}>
+        <p>Error Message:</p>
+        <p>{faultCode} : {faultMessage} : {faultSolution}</p>
+      </div>
+      </footer>
     </section>
   );
 };
