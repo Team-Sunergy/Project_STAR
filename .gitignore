@@ -1,2 +1,16 @@
-node_modules
+# Root .gitignore
+
+# Ignore node_modules
+client/node_modules/
+server/node_modules/
+shared/node_modules/
+
+# Ignore environment files
+client/.env
+server/.env
+shared/.env
+
+# Ignore data.csv files
+client/data.csv
 server/data.csv
+shared/data.csv
