@@ -26,8 +26,7 @@ def getBits(canMessage: bytearray, low: int, high: int) -> int:
     """
     Extracts bits from `low` to `high` (inclusive) from the given.
     """
-    mask = (1 << (high - low + 1)) - 1
-    return (int.from_bytes(canMessage, byteorder='big') >> low) & mask
+    return int.from_bytes(canMessage[(low//8):(high//8)+1], byteorder='big')
 
 
 def getSignedBits(canMessage: bytearray, index: int, index2: int):
@@ -121,17 +120,37 @@ def getMPPTErrors(boolean):
     else:
         return '#E5E5E5'
 
-def send_request_frame0_periodically(bus):
-    def send_requests():
-        while True:
-            send_requests_frame0(bus)
-            time.sleep(0.5)
-
-    threading.Thread(target=send_requests).start()
-    print("Started thread to send request frame0...")
-
-
 
 stateArr = ['OFF', 'ACC', 'IGN', 'DCDC', 'ON', 'CHARGE', 'FAULT']
 def getState(num):
     return stateArr[num]
+
+
+def updateBMSFaults(canMessage: bytearray, bmsFaults):
+    # DTC 1
+    bmsFaults["DischargeLimitEnforcement"] = getBits(canMessage[0], 0, 0)
+    bmsFaults["Charger Safety Relay Fault"] = getBits(canMessage[0], 1, 1)
+    bmsFaults["Internal Hardware Fault"] = getBits(canMessage[0], 2, 2)
+    bmsFaults["Internal Heatsink Thermistor Fault"] = getBits(canMessage[0], 3, 3)
+    bmsFaults["Internal Software Fault"] = getBits(canMessage[0], 4, 4)
+    bmsFaults["Highest Cell Voltage Too High Fault"] = getBits(canMessage[0], 5, 5)
+    bmsFaults["Lowest Cell Voltage Too Low Fault"] = getBits(canMessage[0], 6, 6)
+    bmsFaults["Pack Too Hot Fault"] = getBits(canMessage[0], 7, 7)
+    
+    # DTC 2
+    bmsFaults["Internal Communication Fault"] = getBits(canMessage[1], 0, 0)
+    bmsFaults["Cell Balancing Stuck Off Fault"] = getBits(canMessage[1], 1, 1)
+    bmsFaults["Weak Cell Fault"] = getBits(canMessage[1], 2, 2)
+    bmsFaults["Low Cell Voltage Fault"] = getBits(canMessage[1], 3, 3)
+    bmsFaults["Open Wiring Fault"] = getBits(canMessage[1], 4, 4)
+    bmsFaults["Current Sensor Fault"] = getBits(canMessage[1], 5, 5)
+    bmsFaults["Highest Cell Voltage Over 5V Fault"] = getBits(canMessage[1], 6, 6)
+    bmsFaults["Cell ASIC Fault"] = getBits(canMessage[1], 7, 7)
+    bmsFaults["Weak Pack Fault"] = getBits(canMessage[1], 8, 8)
+    bmsFaults["Fan Monitor Fault"] = getBits(canMessage[1], 9, 9)
+    bmsFaults["Thermistor Fault"] = getBits(canMessage[1], 10, 10)
+    bmsFaults["External Communication Fault"] = getBits(canMessage[1], 11, 11)
+    bmsFaults["Redundant Power Supply Fault"] = getBits(canMessage[1], 12, 12)
+    bmsFaults["High Voltage Isolation Fault"] = getBits(canMessage[1], 13, 13)
+    bmsFaults["Input Power Supply Fault"] = getBits(canMessage[1], 14, 14)
+    bmsFaults["Charge Limit Enforcement Fault"] = getBits(canMessage[1], 15, 15)

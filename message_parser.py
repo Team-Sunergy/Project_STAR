@@ -1,4 +1,5 @@
-from tools import shift_bits, getBits, getSpeed, get32FloatBits, get16FloatBits, getSignedBits
+from tools import shift_bits, getBits, getSpeed, get32FloatBits, get16FloatBits, getSignedBits, updateBMSFaults
+from time import time
 
 def parse_can_message(message, shift_amount=0):
     """
@@ -20,42 +21,73 @@ def parse_can_message(message, shift_amount=0):
 
     return parsed_data
 
-canData = {'DataType': 'none',
-           'BatteryVoltage': 0,
-           'BatteryCurrent': 0,
-           'BatteryCurrentDirection': 'none',
-           'MotorCurrentPeakAverage': 0,
-           'FETTemperature': 0,
-           'MotorRotatingSpeed': 'none',
-           'PWMDuty': 'none',
-           'LeadAngle': 'none',
-           'Speed': 0,
-           'SOC': 0,
-           'SOC2': 0,
-           'HighCellVolts': 'none',
-           'LowCellVolts': 'none',
-           'Temp': 'none',
-           'InputVoltage0': 0,
-           'InputCurrent0': 0,
-           'InputVoltage1': 0,
-           'InputCurrent1': 0,
-           'OutputVoltage0': 0,
-           'OutputCurrent0': 0,
-           'OutputVoltage1': 0,
-           'OutputCurrent1': 0,
-           'MosfetTemperature': 0,
-           'Mode': 0, 
-           'ControllerTemperature': 0,
-           'LowArrayPower': 'none',
-           'MosfetOverheat': 'none',
-           'BatteryLow': 'none',
-           'BatteryFull': 'none',
-           '12VUnderVoltage': 'none',
-           'HWOvercurrent': 'none',
-           'HWOvervoltage': 'none',
-           'PackCurrent': 0,
-           'State': 0,
-           'FaultID': 0}
+bmsFaults = {
+    "DischargeLimitEnforcement": False,
+    "Charger Safety Relay Fault": False,
+    "Internal Hardware Fault": False,
+    "Internal Heatsink Thermistor Fault": False,
+    "Internal Software Fault": False,
+    "Highest Cell Voltage Too High Fault": False,
+    "Lowest Cell Voltage Too Low Fault": False,
+    "Pack Too Hot Fault": False,
+    "Internal Communication Fault": False,
+    "Cell Balancing Stuck Off Fault": False,
+    "Weak Cell Fault": False,
+    "Low Cell Voltage Fault": False,
+    "Open Wiring Fault": False,
+    "Current Sensor Fault": False,
+    "Highest Cell Voltage Over 5V Fault": False,
+    "Cell ASIC Fault": False,
+    "Weak Pack Fault": False,
+    "Fan Monitor Fault": False,
+    "Thermistor Fault": False,
+    "External Communication Fault": False,
+    "Redundant Power Supply Fault": False,
+    "High Voltage Isolation Fault": False,
+    "Input Power Supply Fault": False,
+    "Charge Limit Enforcement Fault": False
+}
+
+canData = {
+    #'TimeStamp': time(),
+    'DataType': 'none',
+    'BatteryVoltage': 0,
+    'BatteryCurrent': 0,
+    'BatteryCurrentDirection': 'none',
+    'MotorCurrentPeakAverage': 0,
+    'FETTemperature': 0,
+    'MotorRotatingSpeed': 'none',
+    'PWMDuty': 'none',
+    'LeadAngle': 'none',
+    'Speed': 0,
+    'SOC': 0,
+    'SOC2': 0,
+    'HighCellVoltage': 0,
+    'LowCellVoltage': 0,
+    'HighTemperature': 0,
+    'InputVoltage0': 0,
+    'InputCurrent0': 0,
+    'InputVoltage1': 0,
+    'InputCurrent1': 0,
+    'OutputVoltage0': 0,
+    'OutputCurrent0': 0,
+    'OutputVoltage1': 0,
+    'OutputCurrent1': 0,
+    'MosfetTemperature': 0,
+    'Mode': 0, 
+    'ControllerTemperature': 0,
+    'LowArrayPower': 'none',
+    'MosfetOverheat': 'none',
+    'BatteryLow': 'none',
+    'BatteryFull': 'none',
+    '12VUnderVoltage': 'none',
+    'HWOvercurrent': 'none',
+    'HWOvervoltage': 'none',
+    'PackCurrent': 0,
+    'State': 0,
+    'FaultID': 0
+}
+
 
 def group_can_data(canId: int, data: bytearray) -> dict:
     """
@@ -81,13 +113,20 @@ def group_can_data(canId: int, data: bytearray) -> dict:
     # bms
     elif(canId == 0x289):
         canData.update({'DataType': 'bms',
-                   'SOC': getBits(data, 56, 63)/2,
-                   'Temp': getBits(data, 0, 7)})
+                   'SOC': getBits(data, 0, 7)/2,    # byte 1
+                   'HighCellVoltage': getBits(data, 8, 23) / 10000.0,
+                   'LowCellVoltage' : getBits(data, 24, 39) / 10000.0,
+                   'BatteryVoltage': getBits(data, 40, 55),
+                   'HighTemperature': getBits(data, 56, 63)
+        })
+        print(getBits(data, 8, 23))
     elif(canId == 0x302):
         canData.update({'DataType': 'bmsData',
-                   'PackCurrent': getSignedBits(data, 0, 1)/10, #/10, #byte 0
+                   'PackCurrent': getSignedBits(data, 0, 1)/10.0, #/10, #byte 0
                    'PackDCL': getBits(data, 0, 7), #byte 3
                    'PackCCL': getBits(data, 8, 15)}) #byte 2
+    elif(canId == 0x303):
+        updateBMSFaults(data, bmsFaults)
 
     # MPPT0 InputVoltage and InputCurrent
     elif(canId == 0x600):
@@ -154,13 +193,20 @@ def group_can_data(canId: int, data: bytearray) -> dict:
                     'LocalMPPT': bool(getBits(data, 38, 38)),
                     'GlobalMPPT': bool(getBits(data, 39, 39))})
     elif(canId == 0x69):
-        canData.update({'DataType': 'Speed',
-                        'Speed': getBits(data, 0, 7)})
+        canData.update({
+            'DataType': 'Speed',
+            'Speed': getBits(data, 0, 7)
+        })
+        print(getBits(data, 0, 7))
     elif(canId == 0x420):
-        canData.update({'DataType': 'STM',
-                        'State': getBits(data, 0, 7),
-                        'FaultID': getBits(data, 8, 15)})
-    
+        canData.update({
+            'DataType': 'STM',
+            'State': getBits(data, 0, 7),
+            'FaultID': getBits(data, 8, 15)
+        })
+
+    #canData['TimeStamp'] = timestamp
+
     return canData
 
     

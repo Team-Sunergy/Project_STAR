@@ -1,0 +1,47 @@
+def setTimeToZero():
+    global secondsElapsed
+    global totalMiles
+    global currentNetAmps
+    global totalNetAmps
+    secondsElapsed = 0
+    totalMiles = 0
+    currentNetAmps = 0
+    totalNetAmps = 0
+
+
+# seconds elapsed
+secondsElapsed = 0.0
+totalMiles = 0.0
+totalNetAmps = 0.0
+currentNetAmps = 0.0
+currentMPH = 0
+
+
+
+def updateGuiData(dataQueue):
+    """updates gui via a queue system"""
+    data = None
+    try:
+        # non-blocking get from queue
+        data = dataQueue.get_nowait()
+    except queue.Empty:
+        pass
+    else:
+        # data received, update labels
+        update_label(data=data)
+
+    # seconds elapsed
+    global secondsElapsed # get seconds elapsed
+    secondsElapsed += 0.1
+    # for total miles
+    global totalMiles # gets total miles
+    global currentMPH
+    # for avg net amps
+    global totalNetAmps
+    global currentNetAmps
+
+    totalMiles = (currentMPH * 0.1/3600) + totalMiles # get total miles
+    avgMPH = totalMiles/(secondsElapsed/3600) # get average mph
+
+    totalNetAmps = (currentNetAmps + totalNetAmps)
+    avgAmps = totalNetAmps/(secondsElapsed * 10)
